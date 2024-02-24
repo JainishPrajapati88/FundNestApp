@@ -2,7 +2,6 @@ body {
     display: flex;
     margin: 0;
     padding: 0;
-    background: url('back_cover2.png');
     color: black;
     padding: 1rem;
     align-items: center;
@@ -10,7 +9,7 @@ body {
     font-family: 'Arial', sans-serif;
     height: 100vh;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533) ;
 }
 
 .parent{
@@ -21,7 +20,7 @@ body {
     background: #ffffffcc;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533) ;
 }
 
 h2{
