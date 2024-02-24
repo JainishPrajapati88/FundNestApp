@@ -350,6 +350,19 @@ def posts():
     user_posts = db.posts.find({'email': email_id})
     return render_template('posts.html', user_posts=user_posts)
 
+@app.route('/deletingPost', methods = ['POST','GET'])
+def deletingPost():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    
+    Post_ID = request.form['pID']
+    print("post id",Post_ID)
+
+    if db.posts.delete_many({'id': Post_ID}):
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('YourPosts'))
+
 @app.route('/login')
 def login():
     return render_template('login.html')
