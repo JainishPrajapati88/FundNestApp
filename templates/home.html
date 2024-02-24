@@ -11,10 +11,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-white bg-white">
   <div class="container-fluid">
-    <img src="static/fundnest.jpg" alt="Fund Nest Icon"style="width:200px; height: 200px; margin-top: 10px; margin-right: 60px;margin: left 100px;">
-    <div class=" colapse navbar-colapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('profile', user_name=UserName) }}" target="_blank">Profile</a>
         </li>
@@ -24,36 +22,38 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('AddPost') }}" target="_blank">Add Post</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/YourPosts" target="_blank">YourPosts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/Notifications" target="_blank">Notifications</a>
-        </li>
-  
-        {% if is_seller %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('add_product') }}" target="_blank">Add Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/delete_product" target="_blank">Delete Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/update_products" target="_blank">Update Products</a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link" href="/orders" target="_blank">Orders</a>
-        </li>
-        {% endif %}
-  
-        {% if not investor %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('products') }}" target="_blank">View Products</a>
-        </li>
-        {% endif %}
-      </ul>
-    
+        </ul>
+      <img src="static/fundnest.jpg" alt="Fund Nest Icon"style="width:300px; height: 300px; margin-top: 10px; margin-right: 60px;margin: left 100px;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/YourPosts" target="_blank">YourPosts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Notifications" target="_blank">Notifications</a>
+      </li>
+
+      {% if is_seller %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('add_product') }}" target="_blank">Add Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/delete_product" target="_blank">Delete Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/update_products" target="_blank">Update Products</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/orders" target="_blank">Orders</a>
+      </li>
+      {% endif %}
+
+      {% if not investor %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('products') }}" target="_blank">View Products</a>
+      </li>
+      {% endif %}
+    </ul>
     </div>
   </div>
 </nav>
@@ -70,7 +70,6 @@
       <a  class="post" href="{{ url_for('profile', user_name=post['UserName']) }}" target="_blank">{{ post['UserName'] }}</a>
       <h2>{{ post['title'] }}</h2>
       <p>{{ post['description'] }}</p>
-      <img src="data:image/png;base64,{{post['img']}}" class="card-img-top" alt="Display Picture" style="height: 200px;width: 200px;border-radius: 50%;overflow: hidden;"><br><br>
   </div>
   {% endfor %}
 </div>
