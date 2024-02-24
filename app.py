@@ -309,6 +309,47 @@ def update_profile():
                 }
             })
     return redirect(url_for('profile', user_name=user_data.get('UserName','')))
+
+@app.route('/AddPost')
+def AddPost():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    return render_template('AddPost.html')
+
+@app.route('/AddIngPost', methods=['POST'])
+def AddIngPost():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        description = request.form.get('description')
+        img = request.files['image'].read()
+        dp_base64 = base64.b64encode(img).decode('utf-8')
+        
+        email_id = session['emailID']
+        usr_data = db.users.find_one({'email':email_id})
+
+        usrName = usr_data.get('UserName','')
+        db.posts.insert_one({
+            'UserName':usrName,
+            'email': email_id,
+            'title': title,
+            'description': description,
+            'img':dp_base64
+        })
+
+        return redirect(url_for('posts'))
+    return redirect(url_for('posts'))
+
+@app.route('/YourPosts')
+def posts():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    email_id = session['emailID']
+    user_posts = db.posts.find({'email': email_id})
+    return render_template('posts.html', user_posts=user_posts)
+
 @app.route('/login')
 def login():
     return render_template('login.html')

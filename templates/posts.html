@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts</title>
+    <link href="{{ url_for('static', filename = 'notification.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+    </div>
+   <div class="container">
+    <h1>My Posts</h1>
+        {% for post in user_posts %}
+            <div class="child mt-3">
+                <div class="child-body">
+                    <h2 class="card-title">{{ post['title'] }}</h2>
+                    <p class="card-text">{{ post['description'] }}</p>
+                    <img src="data:image/png;base64,{{post['img']}}" class="card-img-top" alt="Display Picture" style="height: 200px;width: 200px;border-radius: 50%;overflow: hidden;"><br><br>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
