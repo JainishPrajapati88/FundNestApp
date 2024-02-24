@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'profile.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+    <div class="post-container">
+        <h1 class="title">User Profile: {{ first_name }} {{ last_name }}</h1>
+        
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% else %}
+            {% if readonly %}
+                <img src="data:image/png;base64,{{additional_info.dp}}" alt="Display Picture" style="height: 100px;width: 100px; border-radius: 50%;overflow: hidden;">
+                {% if occupation == 'startup_founder' %}
+                    <p>First Name: {{ first_name }}</p>
+                    <p>Last Name: {{ last_name }}</p>
+                    <p>Occupation: {{ occupation }}</p>
+                    <p>startup_name : {{additional_info.startup_name}}</p>
+                    <p>year_of_found : {{additional_info.year_of_found}}</p>
+                    <p>last_financial_details : {{additional_info.last_financial_details}}</p>
+                    <p>number_of_patents : {{additional_info.number_of_patents}}</p>
+                    <p>yearly_turnover : {{additional_info.yearly_turnover}}</p>
+
+                    <form method="post" action="/RequestingForMeeting">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" class="form-control" name="time">
+                        </div>
+                        <input type="hidden" value="{{ email }}" name="fMailID">
+                        <button type="submit" class="btn btn-primary">Request For Meeting</button>
+                    </form>
+
+                {% elif occupation == 'investor' %}
+                    <p>total_investments : {{additional_info.total_investments}}</p>
+                    <p>area_of_interest : {{additional_info.area_of_interest}}</p>
+
+                {% else %}
+                    <p>shop_name : {{additional_info.shop_name}}</p>
+                    <p>Type_of_Business : {{additional_info.Type_of_Business}}</p>
+                {% endif %}
+            {% else %}
+                <img src="data:image/png;base64,{{ additional_info.dp }}" alt="Display Picture" style="height: 100px;width: 100px; margin-left: 200px;margin-right: 200px;border-radius: 50%; overflow: hidden;">
+                <form method="POST" action="/updatingProfile" enctype="multipart/form-data">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" class="form-control" name="first_name" value="{{ first_name }}" required><br>
+
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" class="form-control" name="last_name" value="{{ last_name }}" required><br>
+
+                    {% if occupation == 'startup_founder' %}
+                        <label for="startup_name">Startup Name:</label>
+                        <input type="text" class="form-control" name="startup_name" value="{{ additional_info.startup_name }}" required><br>
+
+                        <label for="year_of_found">Year of Found:</label>
+                        <input type="text" class="form-control" name="year_of_found" value="{{ additional_info.year_of_found }}" required><br>
+
+                        <label for="last_financial_details">Last Financial Details:</label>
+                        <input type="text" class="form-control" name="last_financial_details" value="{{ additional_info.last_financial_details }}" required><br>
+
+                        <label for="number_of_patents">Number of Patents:</label>
+                        <input type="text" class="form-control" name="number_of_patents" value="{{ additional_info.number_of_patents }}" required><br>
+
+                        <label for="yearly_turnover">Yearly Turnover:</label>
+                        <input type="text" class="form-control" name="yearly_turnover" value="{{ additional_info.yearly_turnover }}" required><br>
+
+                    {% elif occupation == 'investor' %}
+                        <label for="total_investments">Total Investments:</label>
+                        <input type="text" class="form-control" name="total_investments" value="{{ additional_info.total_investments }}" required><br>
+
+                        <label for="area_of_interest">Area of Interest:</label>
+                        <input type="text" class="form-control" name="area_of_interest" value="{{ additional_info.area_of_interest }}" required><br>
+                    
+                    {% else %}
+                        <label for="shop_name">Shop Name:</label>
+                        <input type="text" class="form-control" name="shop_name" value="{{additional_info.shop_name}}" required><br>
+
+                        <label for="Type_of_Business">Type of Business:</label>
+                        <input type="text" class="form-control" name="Type_of_Business" value="{{additional_info.Type_of_Business}}" required><br>
+                    {% endif %}
+
+                    <label for="dp">Image:</label>
+                    <input type="file" class="form-control-file" name="dp" accept="image/*"><br>
+
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

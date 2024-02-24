@@ -162,6 +162,153 @@ def Notifications():
     email = session['emailID']
     Notifications = db.ReqForMeet.find({'FounderMail':email})
     return render_template('notifications.html',Notifications=Notifications)
+
+@app.route('/profile/<user_name>')
+def profile(user_name):
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    
+    user_data = db.users.find_one({'UserName':user_name})
+
+    if not user_data:
+        return render_template('profile.html', error_message="User not found")
+
+    first_name = user_data.get('first_name', '')
+    last_name = user_data.get('last_name', '')
+    email = user_data.get('email', '')
+    occupation = user_data.get('occupation', '')
+    email = user_data.get('email','')
+
+    if email == session.get('emailID'):
+        if occupation=='startup_founder':
+            additional_info = user_data.get('startup_info', {})
+            return render_template('profile.html', first_name=first_name, last_name=last_name, occupation=occupation,additional_info=additional_info)
+        elif occupation=='seller':
+            additional_info = user_data.get('seller_info', {})
+            return render_template('profile.html', first_name=first_name, last_name=last_name, occupation=occupation,additional_info=additional_info)
+        else:
+            investor_info=user_data.get('investor_info',{})
+            return render_template('profile.html', first_name=first_name, last_name=last_name, occupation=occupation, additional_info=investor_info)
+    else:
+        if occupation=='startup_founder':
+            additional_info = user_data.get('startup_info', {})
+            return render_template('profile.html', first_name=first_name, last_name=last_name,email=email,occupation=occupation, additional_info=additional_info, readonly=True)
+        elif occupation=='seller':
+            additional_info = user_data.get('seller_info', {})
+            return render_template('profile.html', first_name=first_name, last_name=last_name, occupation=occupation,additional_info=additional_info, readonly=True)
+        else:
+            investor_info =user_data.get('investor_info',{})
+            return render_template('profile.html', first_name=first_name, last_name=last_name,occupation=occupation,additional_info=investor_info, readonly=True)
+
+
+@app.route('/updatingProfile', methods=['POST'])
+def update_profile():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+    email = session['emailID']
+
+    first_name = request.form.get('first_name', '')
+    last_name = request.form.get('last_name', '')
+
+    user_data = db.users.find_one({'email': email})
+
+    occupation = user_data.get('occupation', '')
+
+    if occupation == 'startup_founder':
+        startup_name = request.form.get('startup_name', '')
+        year_of_found = request.form.get('year_of_found', '')
+        last_financial_details = request.form.get('last_financial_details', '')
+        number_of_patents = request.form.get('number_of_patents', '')
+        yearly_turnover = request.form.get('yearly_turnover', '')
+
+        if 'dp' in request.files:
+            file = request.files['dp']
+            if file.filename != '':
+                print("in if part")
+                dp = file.read()
+                dp_base64 = base64.b64encode(dp).decode('utf-8')
+                print(dp_base64)
+            else:
+                print("in else part - No file selected")
+                dp_base64 = user_data.get('startup_info', {}).get('dp', '')
+                print(dp_base64)
+
+
+        db.users.update_one({'email': email}, {
+            '$set': {
+                'first_name': first_name,
+                'last_name': last_name,
+                'startup_info': {
+                    'startup_name': startup_name,
+                    'year_of_found': year_of_found,
+                    'last_financial_details': last_financial_details,
+                    'number_of_patents': number_of_patents,
+                    'yearly_turnover': yearly_turnover,
+                    'dp':dp_base64
+                }
+            }
+        })
+    elif occupation == 'investor':
+        total_investments = request.form.get('total_investments', '')
+        area_of_interest = request.form.get('area_of_interest', '')
+
+
+        if 'dp' in request.files:
+            file = request.files['dp']
+            if file.filename != '':
+                print("in if part")
+                dp = file.read()
+                dp_base64 = base64.b64encode(dp).decode('utf-8')
+                print(dp_base64)
+            else:
+                print("in else part - No file selected")
+                dp_base64 = user_data.get('investor_info', {}).get('dp', '')
+                print(dp_base64)
+
+            
+        
+        db.users.update_one({'email': email}, {
+            '$set': {
+                'first_name': first_name,
+                'last_name': last_name,
+                'investor_info': {
+                    'total_investments': total_investments,
+                    'area_of_interest': area_of_interest,
+                    'dp':dp_base64
+                }
+            }
+        })
+    else:
+        shop_name= request.form.get('shop_name' , '')
+        Type_of_Business = request.form.get('Type_of_Business' , '')
+        
+
+        if 'dp' in request.files:
+            file = request.files['dp']
+            if file.filename != '':
+                print("in if part")
+                dp = file.read()
+                dp_base64 = base64.b64encode(dp).decode('utf-8')
+                print(dp_base64)
+            else:
+                print("in else part - No file selected")
+                dp_base64 = user_data.get('seller_info', {}).get('dp', '')
+                print(dp_base64)
+        
+
+        db.users.update_one({'email': email}, {
+                '$set': {
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'seller_info': {
+                        'shop_name': shop_name,
+                        'Type_of_Business': Type_of_Business,
+                        'dp':dp_base64
+                    }
+                }
+            })
+    return redirect(url_for('profile', user_name=user_data.get('UserName','')))
 @app.route('/login')
 def login():
     return render_template('login.html')
