@@ -129,6 +129,39 @@ def investor_info(user_name):
 
     return render_template('investor_info.html')
 
+@app.route('/home')
+def home():
+    if 'emailID' in session:
+        user_data = db.users.find_one({'email': session['emailID']})
+
+        if user_data:
+            first_name = user_data.get('first_name', '')
+            last_name = user_data.get('last_name', '')
+            UserName = user_data.get('UserName','')
+            occupation = user_data.get('occupation', '')
+            email = user_data.get('email','')
+
+            posts = db.posts.find()
+
+            if occupation == 'seller':
+                return render_template('home.html', first_name=first_name, last_name=last_name,UserName = UserName,posts=posts,email = email,is_seller=True)
+            else:
+                return render_template('home.html', first_name=first_name, last_name=last_name,UserName = UserName ,posts=posts,email = email,is_seller=False)
+        else:
+            return render_template('home.html', error_message="User data not found")
+
+    else:
+        return redirect(url_for('login'))
+    
+    
+@app.route('/Notifications')
+def Notifications():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    
+    email = session['emailID']
+    Notifications = db.ReqForMeet.find({'FounderMail':email})
+    return render_template('notifications.html',Notifications=Notifications)
 @app.route('/login')
 def login():
     return render_template('login.html')

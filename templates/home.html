@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'home.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('profile', user_name=UserName) }}" target="_blank">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">LogOut</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('AddPost') }}" target="_blank">Add Post</a>
+        </li>
+        </ul>
+      <img src="static/fundnest.jpg" alt="Fund Nest Icon"style="width:300px; height: 300px; margin-top: 10px; margin-right: 60px;margin: left 100px;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/YourPosts" target="_blank">YourPosts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Notifications" target="_blank">Notifications</a>
+      </li>
+
+      {% if is_seller %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('add_product') }}" target="_blank">Add Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/delete_product" target="_blank">Delete Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/update_products" target="_blank">Update Products</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/orders" target="_blank">Orders</a>
+      </li>
+      {% endif %}
+
+      {% if not investor %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('products') }}" target="_blank">View Products</a>
+      </li>
+      {% endif %}
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <h1>Welcome, {{ first_name }} {{ last_name }}!</h1>
+
+  <!--br><br>
+  <h3>POSTS</h3> <br--><br>
+<div class="post-container">
+
+  {% for post in posts %}
+    <div class="posts">
+      <a  class="post" href="{{ url_for('profile', user_name=post['UserName']) }}" target="_blank">{{ post['UserName'] }}</a>
+      <h2>{{ post['title'] }}</h2>
+      <p>{{ post['description'] }}</p>
+  </div>
+  {% endfor %}
+</div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
