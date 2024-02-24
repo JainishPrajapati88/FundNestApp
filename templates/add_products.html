@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'add_products.css') }}">
+</head>
+<body>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <div class="parent">
+    <h1>Add Product</h1>
+    <div class="child">
+    <form method="POST" action="/add_product">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required><br>      
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+        
+        <label for="product_id">Product Id:</label>
+        <input type="text" id="product_id" name="product_id" required><br>
+        
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br>
+
+        <label for="price">No Code Payment Link:</label>
+        <input type="text" id="payment_link" name="payment_link" required><br>
+        
+        <label for="field">Filter by Field:</label>
+        <select name="field" id="field">
+            <option value="">All Fields</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Healthtech">Healthtech</option>
+            <option value="Fintech">Fintech</option>
+            <option value="AI and ML">AI and ML</option>
+            <option value="Renewable Energy and Sustainability">Renewable Energy and Sustainability</option>
+            <option value="Edtech">Edtech</option>
+            <option value="skincare">skincare</option>
+            <option value="Food and Agriculture Technology">Food and Agriculture Technology</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
+        <div class="button">
+            <input type="submit" value="Submit">
+        </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
