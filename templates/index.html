@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund Nest </title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+
+</head>
+
+<body>
+  <body>
+    <section class="home">
+      <div class="description">
+        <h1 class="title">
+          Grow Professionally with the Best
+        </h1>
+        <p class="paragraph">
+          In a world filled with opportunities, having a mentor can make all the
+          difference. Explore why people turn to this invaluable resource to
+          unlock their potential.
+        </p>
+      </div>
+
+      <div class="users-color-container">
+        <span class="item" style="--i: 1"></span>
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/274f29ce-0d3f-4ac2-a2aa-f9b7bd188b2a"
+          style="--i: 2" alt="" />
+        <span class="item" style="--i: 3"></span>
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/b8a14493-3d9f-4b9b-b93a-56d0bc7243e9"
+          style="--i: 4" alt="" />
+
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/03e51e1e-9750-45a5-b75e-a1e341d4562a"
+          style="--i: 10" alt="" />
+        <span class="item" style="--i: 11"></span>
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5eb50f89-3e5a-480e-860c-8d40d3ba9ffe"
+          style="--i: 12" alt="" />
+        <span class="item" style="--i: 5"></span>
+
+        <span class="item" style="--i: 9"></span>
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/86c71a79-2efe-4567-8665-b1e5a1fd9735"
+          style="--i: 8" alt="" />
+        <span class="item" style="--i: 7"></span>
+        <img class="item"
+          src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/97ef9643-5202-41aa-80f0-ceeabccdd099"
+          style="--i: 6" alt="" />
+      </div>
+    </section>
+    <section class="card-container" id="card-container">
+      <div class="slider">
+        <div class="card" data-tilt>
+          <div class="content">
+            <img
+              src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/10088b1a-c0aa-42a9-8dff-1a692eb597d6"
+              alt="" />
+            <h1>Sign Up</h1>
+            <p>
+              Whether you are pursuing a career change, entrepreneurship, or
+              personal development,we are always here to help you out. Sign 
+              Up here If you don't have an account.
+            </p>
+            <button class="btn btn-grad">
+              <a  href="/signup" target="_blank" style="color: black;">Sign Up</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="content">
+            <img
+              src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/69fb8584-66a0-4ecd-bae5-dd00015a1ad5"
+              alt="" />
+            <h1>Login</h1>
+            <p>
+            Already have an account. Then you can log in from here.
+            </p>
+            <button class="btn btn-grad">
+              <a  href="/login" target="_blank" style="color: black;">Login</a>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-tilt>
+          <div class="content">
+            <img
+              src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/fd1d57e3-de8a-438a-9e9a-952ae65a776e"
+              alt="" />
+            <h1>Networking & Connections</h1>
+            <p>
+              Open doors to valuable connections and
+              opportunitiesn and help you build meaningful relationships with other investors.
+              Checkout your posts.
+            </p>
+            <button class="btn btn-grad">
+              <a href="/home" target="_blank" style="color: black;">Posts</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="content">
+            <img
+              src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/331836c0-0d28-48d1-a1c2-b5f5db87fe17"
+              alt="" />
+            <h1>Unsure About Company</h1>
+            <p>
+             Checkout our Testimonials and Company Information here.
+            </p>
+            <button class="btn btn-grad">
+              <a  href="/info" target="_blank" style="color: black;">Testimonials</a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ul class="control" id="custom-control">
+        <li class="prev">
+          <ion-icon class="arrow" name="caret-back-outline"></ion-icon>
+        </li>
+        <li class="next">
+          <ion-icon class="arrow" name="caret-forward-outline"></ion-icon>
+        </li>
+      </ul>
+      <footer> &copy; 2024 Fund Nest <br> 
+        <a href="/privacy_policy" style="color: black;">Privacy Policy</a>
+      
+        <div class="social-media">
+         <a href="https://www.facebook.com/YourPage" target="_blank" style="color: black; position: left;"><i class="fab fa-facebook"></i>facebook</a><br>
+         <a href="https://twitter.com/YourPage" target="_blank" style="color: black; position: left;"><i class="fab fa-twitter"></i>X</a>
+        </div>
+      </footer>
+    </section>
+  </body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js'></script>
+  <script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js'></script>
+  <script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js'></script>
+  <script src='https://unpkg.com/scrollreveal'></script>
+  <script src="{{ url_for('static', filename = 'script.js') }}"></script>
+
+</body>
+
+</html>

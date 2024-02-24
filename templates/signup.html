@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'signup.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <title>Signup</title>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-form">
+            <h1>Sign up</h1>
+            <form method="post" action="CreatingAccount">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" required><br>
+                <br>
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" required><br>
+                <br>
+
+                <label for="UserName">User Name:</label>
+                <input type="text" name="UserName" required><br>
+                <br>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" required><br>
+                <br>
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" required><br>
+                <br>
+
+                <label for="occupation">Occupation:</label>
+                <select name="occupation" id="occupation" required>
+                    <option value="startup_founder">Startup Founder</option>
+                    <option value="investor">Investor</option>
+                    <option value="seller">Supplier</option>
+                </select><br>
+                <br>
+
+                <input type="submit" value="Signup">
+            </form>
+            <p style="text-align:center">Already have an account? <a href="/login" style="color: black;">Log in </a>.</p>
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
