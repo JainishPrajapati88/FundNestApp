@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background: url('back_cover2.png');
+    color: black;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.parent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffffcc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h2{
+    text-align: center;
+}
+
+label{
+    display: block;
+    text-align: center;
+}
+
+input,
+textarea{
+    margin: 5px auto; 
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    width: calc(100% - 10px);
+    background: transparent;
+    padding: 2px 0 2px 0; 
+}
+
+.button{
+    border-radius: 2px;
+    border: 1px solid black;
+    padding: 5px 15px 5px 15px;
+    margin-left: 107px;
+    background: transparent;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.button:hover{
+    transform: scale(1.1);
+    border-radius: 20px;
+    border: none;
+    background:rgba(48, 181, 106, 0.533);
+}
