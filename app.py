@@ -179,9 +179,9 @@ def RequestingForMeeting():
         'Time':time
     }
     db.ReqForMeet.insert_one(ReqForMeet)
-    link=f"https://video-app-u4dq.onrender.com/{FounderMail}"
-    from_email="gpainfo617@gmail.com"
-    password="hwhdwqqcwnltztpa"
+    link=f"https://fundnest-video-call-application.onrender.com/room/{FounderMail}"
+    from_email="fundnestHQ@gmail.com"
+    password="whcd imno grco cmyo"
     subject=f"Invitation to Video Chat on [{date}] at [{time}]"
     body=f'''
     <h5>Dear Sir / Madam,</h5>
@@ -624,8 +624,8 @@ def Contact():
         
         db.contact.insert_one(Contact)
         flash("Your Message has been Sent to Admin")
-        from_email="gpainfo617@gmail.com"
-        password="hwhdwqqcwnltztpa"
+        from_email="fundnestHQ@gmail.com"
+        password="whcd imno grco cmyo"
         subject="Issues faced by the users"
         body=f'''
         <h5>Dear Owners</h5>
@@ -647,7 +647,7 @@ def Contact():
     
         '''
         
-        Mail="nakshishah3108+contactus@gmail.com"
+        Mail="fundnestHQ+contactus@gmail.com"
     
         msg = MIMEMultipart()
         msg['Subject'] = subject
