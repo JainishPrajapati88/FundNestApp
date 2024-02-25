@@ -182,18 +182,18 @@ def RequestingForMeeting():
     link=f"https://fundnest-video-call-application.onrender.com/room/{FounderMail}"
     from_email="fundnestHQ@gmail.com"
     password="whcd imno grco cmyo"
-    subject=f"Invitation to Video Chat on [{date}] at [{time}]"
+    subject=f"Invitation to Video Chat on <b>[{date}] at [{time}]</b>"
     body=f'''
     <h5>Dear Sir / Madam,</h5>
     <p>
     
-    I hope this email finds you well. I am writing to extend an invitation to a video chat scheduled for {date} at {time}. We have an important matter to discuss, and I believe a video chat would be the most effective way to address it.
+    I hope this email finds you well. I am writing to extend an invitation to a video chat scheduled for <b>{date} at {time}</b>. <br> We have an important matter to discuss, and I believe a video chat would be the most effective way to address it.<br>
 
-    To join the video chat, please use the following link: <button><a href="{link}">Link</a></button>. Kindly ensure that you have a stable internet connection and access to a device with a webcam and microphone.
+   <i> To join the video chat, please use the following link: <b> <button><a href="{link}">Link</a></button>.</b> Kindly ensure that you have a stable internet connection and access to a device with a webcam and microphone.</i><br>
 
-    If the proposed date and time are not convenient for you, please let me know at your earliest convenience, and we can arrange an alternative time that suits us both.
+    If the proposed date and time are not convenient for you, please let me know at your earliest convenience, and we can arrange an alternative time that suits us both.<br>
 
-    I look forward to our discussion and appreciate your prompt attention to this matter.
+    I look forward to our discussion and appreciate your prompt attention to this matter.<br>
 
     
     </p>
