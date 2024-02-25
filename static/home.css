@@ -53,8 +53,8 @@
   border-radius: 10px;
   box-shadow: rgba(12, 9, 9, 0.1);
   position: relative;
-  top: 4rem; /* Adjust the top value to control the overall position of the post-container */
-  margin-top: 5rem; /* Adjust the margin-top value to create space between navbar and post-container */
+  top: 5rem; /* Adjust the top value to control the overall position of the post-container */
+  margin-top: 4rem; /* Adjust the margin-top value to create space between navbar and post-container */
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 0 1000px rgba(48, 181, 92, 0.533);
@@ -65,7 +65,7 @@
   margin: 5px;
   border-radius: 5px;
   position: relative; /* Add position relative to allow positioning of individual posts */
-  top: -40px;
+  /* top: 10px; */
 }
 
 .posts:hover {
@@ -91,6 +91,7 @@ h1 {
   background-color: rgba(68, 155, 92, 0.533);
 }
 footer {
+  margin-top: 9%;
   display: flex;
   justify-content: center;
   background-color:rgb(56, 175, 116);
