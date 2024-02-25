@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'addpost.css') }}">
+    <title>Update Product</title>
+</head>
+<body>
+    <div class="post-container">
+    <h1>Update Product</h1>
+    <form action="" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ product.name }}"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description">{{ product.description }}</textarea><br>
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" name="price" value="{{ product.price }}"><br>
+        <label for="field">Field:</label><br>
+        <select id="field" name="field">
+            <option value="">Select Field</option>
+            <option value="Fashion" {% if product.field == 'Fashion' %} selected {% endif %}>Fashion</option>
+            <option value="Healthcare" {% if product.field == 'Healthcare' %} selected {% endif %}>Healthcare</option>
+            <option value="Healthtech" {% if product.field == 'Healthtech' %} selected {% endif %}>Healthtech</option>
+            <option value="Fintech" {% if product.field == 'Fintech' %} selected {% endif %}>Fintech</option>
+            <option value="AI and ML" {% if product.field == 'AI and ML' %} selected {% endif %}>AI and ML</option>
+            <option value="Renewable Energy and Sustainability" {% if product.field == 'Renewable Energy and Sustainability' %} selected {% endif %}>Renewable Energy and Sustainability</option>
+            <option value="Edtech" {% if product.field == 'Edtech' %} selected {% endif %}>Edtech</option>
+            <option value="skincare" {% if product.field == 'skincare' %} selected {% endif %}>skincare</option>
+            <option value="Food and Agriculture Technology" {% if product.field == 'Food and Agriculture Technology' %} selected {% endif %}>Food and Agriculture Technology</option>
+            <option value="Other" {% if product.field == 'Other' %} selected {% endif %}>Other</option>
+
+        </select><br>
+        <input type="submit" class="btn" value="Update">
+    </form>
+    </div>
+</body>
+</html>

@@ -141,7 +141,7 @@ def home():
             occupation = user_data.get('occupation', '')
             email = user_data.get('email','')
 
-            posts = db.posts.find()
+            posts = db.posts.find().sort('_id', -1)
 
             if occupation == 'seller':
                 return render_template('home.html', first_name=first_name, last_name=last_name,UserName = UserName,posts=posts,email = email,is_seller=True)
@@ -160,8 +160,68 @@ def Notifications():
         return redirect(url_for('login'))
     
     email = session['emailID']
-    Notifications = db.ReqForMeet.find({'FounderMail':email})
+    Notifications = db.ReqForMeet.find({'FounderMail':email}).sort('_id', -1)
     return render_template('notifications.html',Notifications=Notifications)
+
+@app.route('/RequestingForMeeting', methods=['GET', 'POST'])
+def RequestingForMeeting():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    
+    usrData = db.users.find_one({'email':session['emailID']})
+    Mail = usrData.get('email','')
+    date = request.form['date']
+    time = request.form['time']
+    FounderMail = request.form['fMailID']
+    ReqForMeet = {
+        'FounderMail':FounderMail,
+        'Mail':Mail,
+        'Date':date,
+        'Time':time
+    }
+    db.ReqForMeet.insert_one(ReqForMeet)
+    link=f"https://video-app-u4dq.onrender.com/{FounderMail}"
+    from_email="gpainfo617@gmail.com"
+    password="hwhdwqqcwnltztpa"
+    subject=f"Invitation to Video Chat on [{date}] at [{time}]"
+    body=f'''
+    <h5>Dear Sir / Madam,</h5>
+    <p>
+    
+    I hope this email finds you well. I am writing to extend an invitation to a video chat scheduled for {date} at {time}. We have an important matter to discuss, and I believe a video chat would be the most effective way to address it.
+
+    To join the video chat, please use the following link: <button><a href="{link}">Link</a></button>. Kindly ensure that you have a stable internet connection and access to a device with a webcam and microphone.
+
+    If the proposed date and time are not convenient for you, please let me know at your earliest convenience, and we can arrange an alternative time that suits us both.
+
+    I look forward to our discussion and appreciate your prompt attention to this matter.
+
+    
+    </p>
+    <p>
+    Best regards,
+    FundNest
+    
+    </p>
+    
+    '''
+    
+    msg = MIMEMultipart()
+    msg['Subject'] = subject
+    msg['From'] = from_email
+    msg['To'] = Mail
+    
+    msg.attach(MIMEText(body, 'html'))
+
+
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(from_email, password)
+            server.sendmail(from_email, Mail, msg.as_string())
+            server.sendmail(from_email, FounderMail, msg.as_string())
+            print("Mail Send Successfully")
+
+    return redirect(url_for('home'))
 
 @app.route('/profile/<user_name>')
 def profile(user_name):
@@ -330,8 +390,18 @@ def AddIngPost():
         email_id = session['emailID']
         usr_data = db.users.find_one({'email':email_id})
 
+        
+        if db.posts.find_one({}, sort=[('id', -1)]):
+            last_post = db.posts.find_one({}, sort=[('id', -1)])
+            print(last_post)
+            last_post_id = int(last_post['id'])
+            new_post_id = last_post_id + 1
+        else:
+            new_post_id = 1
+
         usrName = usr_data.get('UserName','')
         db.posts.insert_one({
+            'id': new_post_id,
             'UserName':usrName,
             'email': email_id,
             'title': title,
@@ -347,7 +417,7 @@ def posts():
     if 'emailID' not in session:
         return redirect(url_for('login'))
     email_id = session['emailID']
-    user_posts = db.posts.find({'email': email_id})
+    user_posts = db.posts.find({'email': email_id}).sort('_id', -1)
     return render_template('posts.html', user_posts=user_posts)
 
 @app.route('/deletingPost', methods = ['POST','GET'])
@@ -358,7 +428,7 @@ def deletingPost():
     Post_ID = request.form['pID']
     print("post id",Post_ID)
 
-    if db.posts.delete_many({'id': Post_ID}):
+    if db.posts.find_one_and_delete({'id': Post_ID}):
         return redirect(url_for('home'))
     else:
         return redirect(url_for('YourPosts'))
@@ -383,6 +453,161 @@ def loggingIn():
     else:
         return redirect(url_for('login'))
     
+@app.route('/add_product', methods=['GET', 'POST'])
+def add_product():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    
+    if request.method == 'POST':
+        product_name = request.form['name']
+        product_description = request.form['description']
+        product_id = request.form['product_id']
+        product_price = request.form['price']
+        product_seller = session['emailID']
+        product_field = request.form['field']
+        product_payment_link = request.form['payment_link']
+        
+        if db.products.find_one({'product_id': product_id}):
+            return render_template('add_products.html', error_message="This product id already exists")
+        else:
+            product_data = {
+                'name': product_name,
+                'description': product_description,
+                'product_id': product_id,
+                'price': product_price,
+                'seller': product_seller,
+                'field': product_field,
+                'payment_link':product_payment_link
+            }
+            db.products.insert_one(product_data)
+        
+        return redirect('/home')
+
+    return render_template('add_products.html')
+
+@app.route('/update_products', methods=['GET'])
+def update_products_page():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+    seller_email = session['emailID']
+
+    seller_products = db.products.find({'seller': seller_email})
+
+    return render_template('update_products.html', products=seller_products)
+
+@app.route('/update_product/<product_id>', methods=['GET','POST'])
+def update_product(product_id):
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+
+    seller_email = session['emailID']
+    print(seller_email)
+
+    product = db.products.find_one({'product_id': product_id, 'seller': seller_email}) 
+    print(product)
+    if not product:
+        return render_template('update_products.html', error_message="Product not found or you are not authorized to update it")
+
+    if request.method == 'POST':
+        updated_product = {
+            'name': request.form['name'],
+            'description': request.form['description'],
+            'price': request.form['price'],
+            'field': request.form['field']
+        }
+        db.products.update_one({'product_id': product_id, 'seller': seller_email}, {'$set': updated_product})
+
+        return redirect('/home')
+
+    return render_template('update_product_form.html', product=product)
+
+
+@app.route('/delete_product', methods=['GET'])
+def delete_product_page():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+    seller_email = session['emailID']
+
+    seller_products = db.products.find({'seller': seller_email})
+
+    return render_template('delete_products.html', products=seller_products)
+
+
+@app.route('/delete_product/<product_id>', methods=['POST'])
+def delete_product(product_id):
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+
+    seller_email = session['emailID']
+
+    result = db.products.delete_one({'product_id': product_id, 'seller': seller_email})
+
+    if result.deleted_count == 1:
+        return redirect('/home')
+    else:
+        return render_template('delete_products.html', error_message="Product not found or you are not authorized to delete it")
+    
+@app.route('/products')
+def products():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    field_filter = request.args.get('field', '') 
+    if field_filter:
+        products = db.products.find({'field': field_filter})
+    else:
+        products = db.products.find()
+    
+    return render_template('products.html', products=products)
+
+@app.route('/submit_order', methods=['POST'])
+def submit_order():
+    if request.method == 'POST':
+        print("In Post Method")
+
+        product_id = request.form['product_id']
+        seller_mail = db.products.find({'product_id':product_id}).next()['seller']
+        quantity = request.form['quantity']
+        email=session.get('emailID')
+        UserName = db.users.find( {'email': email}).next()['UserName']
+
+        p_Data = db.products.find_one({'product_id':product_id})
+
+        link_for_payment = p_Data['payment_link']
+
+        order_data = {
+                "usernm":UserName,
+                'user_email':session.get('emailID'),
+                'seller_email':seller_mail,
+                'product_id': product_id,
+                'quantity': quantity
+        }
+        print(order_data)
+        db.orders.insert_one(order_data)
+
+        return redirect(link_for_payment)
+    else:
+        return render_template('products.html')
+
+@app.route('/orders')
+def orders():
+    if 'emailID' not in session:
+        return redirect(url_for('login'))
+    email=session.get('emailID')
+
+    orders = db.orders.find({'seller_email':email})
+
+    return render_template('seller_side_orders.html',orders=orders)
+    
+@app.route ('/privacy_policy',methods = ['GET'])
+def policy():
+    return render_template('privacy_policy.html')
+
+@app.route('/info',methods=['POST','GET'])
+def info():
+    return render_template('contact_us.html')
 
 if __name__ =="__main__":
     app.run(debug=True)

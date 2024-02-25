@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'addpost.css') }}">
+    <title>Delete Products</title>
+</head>
+<body>
+    <div class="post-container">
+        <h1 class="mt-5">Delete Products</h1>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+        <ul class="list-group mt-3">
+            {% for product in products %}
+                <li class="list-group-item">
+                    <p><strong>Name:</strong> {{ product.name }}</p>
+                    <p><strong>Description:</strong> {{ product.description }}</p>
+                    <p><strong>Product ID:</strong> {{ product.product_id }}</p>
+                    <p><strong>Price:</strong> {{ product.price }}</p>
+                    <p><strong>Seller:</strong> {{ product.seller }}</p>
+                    <p><strong>Field:</strong> {{ product.field }}</p>
+                    <form action="{{ url_for('delete_product', product_id=product.product_id) }}" method="post">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

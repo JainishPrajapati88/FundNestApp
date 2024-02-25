@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'addpost.css') }}">
+    <title>Products</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="post-container">
+        <h1 class="mt-5">Products</h1>
+        
+        <form action="{{ url_for('products') }}" method="GET">
+            <div class="form-group">
+                <label for="field">Filter by Field:</label>
+                <select name="field" id="field" class="form-control">
+                    <option value="">All Fields</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Healthtech">Healthtech</option>
+                    <option value="Fintech">Fintech</option>
+                    <option value="AI and ML">AI and ML</option>
+                    <option value="Renewable Energy and Sustainability">Renewable Energy and Sustainability</option>
+                    <option value="Edtech">Edtech</option>
+                    <option value="skincare">skincare</option>
+                    <option value="Food and Agriculture Technology">Food and Agriculture Technology</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <button type="submit" class="btn ">Filter</button>
+        </form>
+
+        <ul class="list-group mt-3">
+            {% for product in products %}
+                <li class="list-group-item">
+                    {{ product.name }} - {{ product.description }} - {{ product.product_id }} - {{ product.price }} - {{ product.seller }}
+                    <form action="{{ url_for('submit_order') }}" method="POST">
+                        Quantity : <input type="number" name="quantity" required min="1" value="1">
+                        <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                        <button type="submit" class="btn btn-success">Order</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
