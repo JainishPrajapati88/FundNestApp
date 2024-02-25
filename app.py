@@ -425,13 +425,11 @@ def deletingPost():
     if 'emailID' not in session:
         return redirect(url_for('login'))
     
-    Post_ID = request.form['pID']
+    Post_ID = int(request.form['pID'])
     print("post id",Post_ID)
 
-    if db.posts.find_one_and_delete({'id': Post_ID}):
-        return redirect(url_for('home'))
-    else:
-        return redirect(url_for('YourPosts'))
+    db.posts.find_one_and_delete({'id': Post_ID})
+    return redirect(url_for('home'))
 
 @app.route('/login')
 def login():
