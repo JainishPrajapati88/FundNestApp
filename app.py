@@ -604,8 +604,73 @@ def policy():
     return render_template('privacy_policy.html')
 
 @app.route('/info',methods=['POST','GET'])
-def info():
+def Contact():
+    if request.method=="POST":
+        email = request.form['email']
+        name = request.form['name']
+        phone = request.form['phone']
+        sub = request.form['sub']
+        description = request.form['description']
+    
+       
+    
+        Contact = {
+                'email': email,
+                'name': name,
+                'phone': phone,
+                'sub': sub,
+                'description': description
+            }
+        
+        db.contact.insert_one(Contact)
+        flash("Your Message has been Sent to Admin")
+        from_email="gpainfo617@gmail.com"
+        password="hwhdwqqcwnltztpa"
+        subject="Issues faced by the users"
+        body=f'''
+        <h5>Dear Owners</h5>
+        <p>
+    
+        The users of your dearest site are having some issues with it .
+        <br> And they are trying to reach to you .<br>
+        According to one of the user Naming <b>{name}</b> <br>having email : <b>{email}</b>,<br> Phone number : <b>{phone}</b> . <br>
+        The problem of <i>{name}</i> is <b><i>{sub}</i></b> and the deatailed explanation for this issue is :<br> <b>{description}</b>. <br><br>
+        So kindly review the problems of your dearest users.
+
+    
+        </p>
+        <p>
+        Best regards,
+        Your Users 
+    
+        </p>
+    
+        '''
+        
+        Mail="nakshishah3108+contactus@gmail.com"
+    
+        msg = MIMEMultipart()
+        msg['Subject'] = subject
+        msg['From'] = from_email
+        msg['To'] = Mail
+    
+        msg.attach(MIMEText(body, 'html'))
+
+
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+             server.starttls()
+             server.login(from_email, password)
+             server.sendmail(from_email, Mail, msg.as_string())
+            
+             print("Mail Send Successfully")
+
+        return redirect('/info')
+    
     return render_template('contact_us.html')
+
+@app.route('/AboutUs' , methods =['POST' , 'GET'])
+def  AboutUs():
+    return render_template('About.html')
 
 if __name__ =="__main__":
     app.run(debug=True)
