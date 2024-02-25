@@ -24,9 +24,6 @@
             <a class="nav-link active" href="{{ url_for('profile', user_name=UserName) }}" target="_blank">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">LogOut</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{ url_for('AddPost') }}" target="_blank">Add Post</a>
           </li>
           <li class="nav-item">
@@ -53,6 +50,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('products') }}" target="_blank">View Products</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">LogOut</a>
+          </li>
           {% endif %}
         </ul>
       </div>
@@ -61,8 +61,8 @@
   
 <div class="container-fluid">
   <h1>Welcome, {{ first_name }} {{ last_name }}!</h1>
-
-  <br><br><br><br><br>
+</div>
+<div class="container-fluid">  
   <!--h3>POSTS</h3> <br--><br>
 <div class="post-container">
   {% for post in posts %}
@@ -76,6 +76,17 @@
   {% endfor %}
 </div>
 </div>
+    <div>
+        <div class="social-media">
+          <footer> &copy; 2024 Fund Nest   
+            <a href="https://linkedin.com" alt="linkedin"><img  class="icon" src =" /static/linkedin.png" alt="y" style="margin-left: 6%;"></a>
+            <a href="https://github.com" alt="github"><img  class="icon" src =" /static/github.png" alt="y" style="margin-left: 2%;"></a>
+            <a href="https://youtube.com" alt="youtube"><img  class="icon" src =" /static/youtube.png" alt="y" style="margin-left:2%"></a>
+            <a href="/privacy_policy" style="color: black;" >Privacy Policy</a>
+            <a href="/about_us" style="color: black; margin-left: 2%;" >About us</a>
+          </footer>
+        </div>
+      </div>
 
 </body>
 </html>
