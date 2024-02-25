@@ -51,13 +51,13 @@ img {
   margin-bottom: 30px;
 }
 
+
 .users-color-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 20px;
 }
-
 .item {
   max-width: 200px;
   aspect-ratio: 1/1;
@@ -142,9 +142,9 @@ margin: 20px;
   width: 100%;
   column-gap: 5%;
   max-height: 100vh;
-  /* overflow: hidden; */
   padding: 90px 50px 10px 20px;
 }
+
 
 .content {
   max-width: 800px;
@@ -302,9 +302,24 @@ margin: 20px;
   }
   
 }
+footer {
+  display: flex;
+  justify-content: center;
+  background-color:rgb(56, 175, 116);
+  color: white; 
+  padding: 20px;
+}
 
-footer{
-  padding: -1000px 100px;
-  color: black;
+.footer-content {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+}
 
+.icon {
+  flex: 1;
+  text-align: center;
+  margin: 0 10px;
+  width: 30px; 
+  height: 30px;
 }
