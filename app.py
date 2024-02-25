@@ -181,7 +181,7 @@ def RequestingForMeeting():
     db.ReqForMeet.insert_one(ReqForMeet)
     link=f"https://fundnest-video-call-application.onrender.com/room/{FounderMail}"
     from_email="fundnestHQ@gmail.com"
-    password="whcd imno grco cmyo"
+    password="whcdimnogrcocmyo"
     subject=f"Invitation to Video Chat on [{date}] at [{time}]"
     body=f'''
     <h5>Dear Sir / Madam,</h5>
@@ -513,7 +513,8 @@ def update_product(product_id):
             'name': request.form['name'],
             'description': request.form['description'],
             'price': request.form['price'],
-            'field': request.form['field']
+            'field': request.form['field'],
+            'payment_link' : request.form['pLink']
         }
         db.products.update_one({'product_id': product_id, 'seller': seller_email}, {'$set': updated_product})
 
