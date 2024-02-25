@@ -20,7 +20,7 @@ body {
     background: #ffffffcc;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533) ;
 }
 
 h2{
@@ -49,13 +49,11 @@ textarea{
     padding: 5px 15px 5px 15px;
     margin-left: 107px;
     background: transparent;
-    transform: scale(1);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .button:hover{
-    transform: scale(1.1);
-    border-radius: 20px;
     border: none;
-    background:rgba(48, 181, 106, 0.533);
+    border-radius: 5px;
+    background-color: rgba(48, 181, 106, 0.533);
 }

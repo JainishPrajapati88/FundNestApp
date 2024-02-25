@@ -1,62 +1,61 @@
 body{
-background-color: white;
-}
-.container-fluid {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.post-container {
-    margin: 0 auto; 
-    max-width: 600px; 
     background-color: white;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533) ;
-    margin-bottom: 10px;
-}
-
-.post-container h1,
-.post-container form {
-    text-align: center;
-}
-
-.post-container input,
-.post-container textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: transparent;
-    color: black;
-}
-
-.post-container button {
-    background-color: transparent;
-    color: #000;
-    border: 1px solid black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transform: scale(1);
-    transition: transform 0.3s ease-in-out;
-    margin-top: 5px;
-}
-
-.post-container button:hover {
-    transform: scale(1.1);
-    border: none;
-    border-radius: 20px;
-    background-color: rgba(48, 181, 106, 0.533);
-}
-
-.title{
-    height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    }
+    .container-fluid {
+        text-align: center;
+        margin-top: 40px;
+    }
+    
+    .post-container {
+        margin: 0 auto; 
+        max-width: 600px; 
+        background-color: white;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533) ;
+        margin-bottom: 10px;
+    }
+    
+    .post-container h1,
+    .post-container form {
+        text-align: center;
+    }
+    
+    .post-container input,
+    .post-container textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: transparent;
+        color: black;
+    }
+    
+    .post-container button {
+        background-color: transparent;
+        color: #000;
+        border: 1px solid black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+        margin-top: 5px;
+    }
+    
+    .post-container button:hover {
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(48, 181, 106, 0.533);
+    }
+    
+    .title{
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    

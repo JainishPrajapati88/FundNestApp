@@ -53,16 +53,19 @@
   border-radius: 10px;
   box-shadow: rgba(12, 9, 9, 0.1);
   position: relative;
-  margin-top: 32%;
+  top: 4rem; /* Adjust the top value to control the overall position of the post-container */
+  margin-top: 5rem; /* Adjust the margin-top value to create space between navbar and post-container */
   left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533);
+  transform: translateX(-50%);
+  box-shadow: 0 0 1000px rgba(48, 181, 92, 0.533);
 }
 
 .containe {
   border: 1px solid black;
   margin: 5px;
   border-radius: 5px;
+  position: relative; /* Add position relative to allow positioning of individual posts */
+  top: -40px;
 }
 
 .posts:hover {
@@ -71,6 +74,7 @@
 
 h1 {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .nav-item {
