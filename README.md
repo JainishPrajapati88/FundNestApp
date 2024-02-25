@@ -6,6 +6,9 @@ Welcome to FundNest - The All-in-One Platform for New Generation Startups!
 
 FundNest is a web platform that brings together startup founders, investors, and sellers, providing a comprehensive solution for the needs of new-generation startups. Whether you are seeking investments, mentorship, or looking to buy raw materials for your startup, FundNest has got you covered.
 
+## Installation Setup
+- **Installing dependencies:** pip install -r requirements.txt
+- **To Run Project:** python app.py
 ## Features
 
 - **Startup Registration:** Founders can easily register their startups on FundNest.
