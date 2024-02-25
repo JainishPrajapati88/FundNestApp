@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'addpost.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'add_products.css') }}">
     <title>Update Products</title>
 </head>
 <body>
-    <div class="post-container">
+    <div class="parent">
         <h1 class="mt-5">Update Products</h1>
         {% if error_message %}
             <p>{{ error_message }}</p>

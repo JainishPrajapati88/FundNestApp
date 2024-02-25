@@ -8,15 +8,11 @@
   align-items: center;
   justify-content: center;
  margin-left:5px;
- /* margin-right: auto; */
- /* margin-top: -70px; */
-
-
 }
 
 
 .navbar-nav .nav-link {
-  background-color: rgba(23, 179, 64, 0.533);
+  background-color: rgba(48, 181, 92, 0.533);
   min-width: 8vw;
   height: 50px;
   color: black;
@@ -37,12 +33,12 @@
 
 .navbar {
   max-height: 4.5rem;
-  background-color: teal;
+  background-color:white;
   z-index: 1000;
 }
 
 .navbar-brand img {
-  width: 50px; /* Adjust the size of the logo as needed */
+  width: 50px; 
   height: 50px;
 }
 
@@ -57,17 +53,19 @@
   border-radius: 10px;
   box-shadow: rgba(12, 9, 9, 0.1);
   position: relative;
-  top: 27rem;
+  top: 5rem; /* Adjust the top value to control the overall position of the post-container */
+  margin-top: 4rem; /* Adjust the margin-top value to create space between navbar and post-container */
   left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 5rem;
-  box-shadow: 0 0 1000px  rgba(48, 181, 92, 0.533)
+  transform: translateX(-50%);
+  box-shadow: 0 0 1000px rgba(48, 181, 92, 0.533);
 }
 
 .containe {
   border: 1px solid black;
   margin: 5px;
   border-radius: 5px;
+  position: relative; /* Add position relative to allow positioning of individual posts */
+  /* top: 10px; */
 }
 
 .posts:hover {
@@ -76,6 +74,7 @@
 
 h1 {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .nav-item {
@@ -90,4 +89,27 @@ h1 {
 
 .active {
   background-color: rgba(68, 155, 92, 0.533);
+}
+footer {
+  margin-top: 9%;
+  display: flex;
+  justify-content: center;
+  background-color:rgb(56, 175, 116);
+  color: white; 
+  padding: 20px;
+}
+
+.footer-content {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.icon {
+  margin-left:2%;
+  flex: 1;
+  text-align: center;
+  margin: 0 10px;
+  width: 30px; 
+  height: 30px;
 }

@@ -33,13 +33,13 @@ input{
 }
 
 select{
-    margin-left: 90px;
+    margin-left: 110px;
     width: 40%;
 }
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #333;            
 }
 
 label{
@@ -47,25 +47,23 @@ label{
 }
 
 input[type="submit"]{
-    transform: scale(1);
     align-items: center;
-    transition: transform 0.3s
+    transition: all 0.3s
     ease-in-out;
     font-size: 20px;
     border: 1px solid black;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 5px 15px 5px 15px;
-    margin-left: 110px;
+    margin-left: 35%;
     width: 30%;
     height: 40%;
     background: white;
 }
 
 input[type="submit"]:hover{
-    transform: scale(1.1);
     border: none;
-    border-radius: 20px;
-    background:rgba(48, 181, 106, 0.533);
+    border-radius: 5px;
+    background-color: rgba(48, 181, 106, 0.533);
 }
 
 label{
