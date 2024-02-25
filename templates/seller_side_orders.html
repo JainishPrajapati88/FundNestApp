@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'addpost.css') }}">
+    <title>Orders</title>
+</head>
+<body>
+    <div class="post-container">
+        {% for order in orders %}
+            <ul>
+                <li>Product ID: {{ order['product_id'] }}</li>
+                <li>Buyer MailID: {{ order['user_email'] }}</li>
+                <li>Order Quantity: {{ order['quantity'] }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>
