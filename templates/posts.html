@@ -12,13 +12,17 @@
    <div class="container">
     <h1>My Posts</h1>
         {% for post in user_posts %}
-            <div class="child mt-3">
-                <div class="child-body">
-                    <h2 class="card-title">{{ post['title'] }}</h2>
-                    <p class="card-text">{{ post['description'] }}</p>
-                    <img src="data:image/png;base64,{{post['img']}}" class="card-img-top" alt="Display Picture" style="height: 200px;width: 200px;border-radius: 50%;overflow: hidden;"><br><br>
-                </div>
+        <div class="child mt-3">
+            <div class="child-body">
+                <h2 class="card-title">{{ post['title'] }}</h2>
+                <p class="card-text">{{ post['description'] }}</p>
+                <img src="data:image/png;base64,{{post['img']}}" class="card-img-top" alt="Display Picture" style="height: 200px;width: 200px;border-radius: 50%;overflow: hidden;"><br><br>
+                <form action = "/deletingPost" method="post">
+                    <input type="hidden" value="{{ post['id'] }}" name = "pID">
+                    <input type="submit" value="delete" name="deletePost">
+                </form>
             </div>
+        </div>
         {% endfor %}
     </div>
 
