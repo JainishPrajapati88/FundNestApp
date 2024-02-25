@@ -153,7 +153,6 @@ def home():
     else:
         return redirect(url_for('login'))
     
-    
 @app.route('/Notifications')
 def Notifications():
     if 'emailID' not in session:
@@ -418,6 +417,7 @@ def posts():
         return redirect(url_for('login'))
     email_id = session['emailID']
     user_posts = db.posts.find({'email': email_id}).sort('_id', -1)
+    print(user_posts)
     return render_template('posts.html', user_posts=user_posts)
 
 @app.route('/deletingPost', methods = ['POST','GET'])
