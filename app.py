@@ -9,7 +9,7 @@ from email.mime.application import MIMEApplication
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'DiplomatesAtDuHacks3.0'
-client = MongoClient("mongodb+srv://fundnest:fundnest@cluster0.gnbp0sa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", server_api=ServerApi('1'))
+client = MongoClient("enter mongo db url here", server_api=ServerApi('1'))
 db = client.fundnest
 collection = db.users
 
